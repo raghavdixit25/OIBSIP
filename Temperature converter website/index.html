@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <link rel="stylesheet" href="styles.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+
+  <div class="container">
+    <h1>Temperature Converter</h1>
+    
+    <label for="temperature">Enter Temperature:</label>
+    <input type="number" id="temperature" placeholder="Enter temperature">
+    
+    <label for="unit">Select Unit:</label>
+    <select id="unit">
+      <option value="celsius">Celsius</option>
+      <option value="fahrenheit">Fahrenheit</option>
+    </select>
+    
+    <button onclick="convertTemperature()">Convert</button>
+    
+    <div id="output">Converted temperature will appear here.</div>
+  </div>
+
+  <script>
+    function convertTemperature() {
+      let temp = document.getElementById("temperature").value;
+      let unit = document.getElementById("unit").value;
+      let output = document.getElementById("output");
+
+      // Validate input to ensure it's a number
+      if (isNaN(temp) || temp === "") {
+        output.innerHTML = "Please enter a valid number for temperature.";
+        return;
+      }
+
+      // Perform conversion
+      temp = parseFloat(temp); // Convert input to a number
+      if (unit === "celsius") {
+        let fahrenheit = (temp * 9/5) + 32;
+        output.innerHTML = `${temp}°C is equal to ${fahrenheit.toFixed(2)}°F`;
+      } else if (unit === "fahrenheit") {
+        let celsius = (temp - 32) * 5/9;
+        output.innerHTML = `${temp}°F is equal to ${celsius.toFixed(2)}°C`;
+      }
+    }
+  </script>
+</body>
+</html>
